@@ -20,7 +20,9 @@ This repository is for developing a tool that analyze pair  of signals (biomedic
 │   ├──  AC, HRFreq, HRTime: Auxiliary classes to implement specific methods of each particular signal. 
 
 ├── examples
+
 │   ├── mesa: contains an example using MESA dataset. An in-deepth explanation can be found in the paper were this tool is presented. It is necessary to download the raw data from MESA datset to use this example.
+
 │   ├── plug&play: contains a ready-to-use example. 
 ## Dependencies ##
 

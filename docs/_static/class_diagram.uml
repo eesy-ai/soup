@@ -1,0 +1,102 @@
+@startuml
+
+package ValidationTool #ffffff
+{
+
+
+    class Tool_Abstract
+    {
+        + config
+        + stages
+        + stats
+        + display 
+        + output_pvalues
+        + output_statistics
+        + output_values
+        __
+        + run
+        + validate
+        + generate_check_function
+        - _process_patient_data
+        - _check_conditions
+        - _check_data_columns
+        - _check_sleep_stages
+        - _init_output
+        - _create_output_df
+        - _format_results
+        - _combine_stages
+        - _get_combinations
+        - _save_results
+    }
+
+    class Statistics{
+        __
+        + pairwaise_comparisson
+        + same_distribution_test
+        - _check_identical_values
+    }
+
+    class Display{
+        + styles
+        __
+        + plot_heatmap
+        + plot_bar
+        + visualize_output
+        + write_summary
+        + summarize_by_clinical
+        + summarize_by_stages_patient
+        + summarize_by_stages_dataset
+        + summarize_by_stages
+        + cluster_patients
+        + write_score_patient
+        + write_score_dataset
+        + generate_report
+        - _write_grouped_summary
+        - _visualize_clusters
+        - _create_dir_if_needed
+        - _open_file
+        - _close_file
+        - _save_csv
+        - _add_table_to_pdf
+        - _add_image_to_pdf
+        - _add_text_to_pdf
+    }
+
+    class AC{
+        __
+        - _check_ac_nrem_smaller_awake
+        - _check_ac_nrem_less_freq_awake
+        - _check_ac_post_prev_rem_higher
+        - _get_prev_post_rem_groups
+    }
+
+    class HRTime{
+        __
+        - _check_hr_increase_rem
+        - _check_hr_decrease_nrem
+        - _check_hr_increase_by_phase
+    }
+
+    class HRFreq{
+        __
+        - _check_ratio_lowest_n3
+    }
+}
+
+class config{
+    + STAGES
+    + AC_CONFIG
+    + HRTime_CONFIG
+    + HRFREQ_CONFIG
+
+}
+
+Tool_Abstract <|-- AC
+Tool_Abstract <|-- HRTime
+Tool_Abstract <|-- HRFreq
+Tool_Abstract o-- Statistics
+Tool_Abstract o-- Display
+Tool_Abstract o-- config
+
+
+@enduml
